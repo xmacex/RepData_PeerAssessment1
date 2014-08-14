@@ -53,7 +53,7 @@ The most active interval on average is the interval number 104.
 
 ## Imputing missing values
 
-The data has total 2304 NA's. A new data set will now be created. This solution was found online from [StackOverflow](http://stackoverflow.com/questions/9322773/how-to-replace-na-with-mean-by-subset-in-r-impute-with-plyr)
+The data has total 2304 NA's. A new data set will now be created. This solution was found online from [StackOverflow](http://stackoverflow.com/questions/9322773/how-to-replace-na-with-mean-by-subset-in-r-impute-with-plyr).
 
 
 ```r
@@ -69,11 +69,23 @@ hist(stepsPerDateNoNas, main="Histogram of total steps per day (NA's converted)"
 
 ![plot of chunk handleNas](figure/handleNas.png) 
 
-The mean number of steps in the data now, with NA's replaced with means is 1.0766 &times; 10<sup>4</sup> while the median 1.0766 &times; 10<sup>4</sup>.
+The mean number of steps in the data now, with NA's replaced with means is 1.0766 &times; 10<sup>4</sup> while the median 1.0766 &times; 10<sup>4</sup>. As can be witnessed from the historam here, replacing all unknown data points (NA) with mean values creates huge bias and is quite a bad strategy for imputing. Something like interpolation, *k* nearest neighbours, or some random variables which have the same standard variance as the non-NA data would be a better idea.
+
+It would be intersting to calculate how much error was introduced by thus method.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
 
 ```r
-isWeekday <- !weekdays(as.Date(activity$date)) %in% c('lauantai', 'sunnuntai')
+# create a new column to indicate weekends (rude to manipulate date?)
+activityNoNas$weekend <- weekdays(as.Date(activityNoNas$date)) %in% c('lauantai', 'sunnuntai')
+# temporary data frame
+df <- aggregate(activityNoNas$steps, list(activityNoNas$weekend, activity$interval), mean)
+par(mfrow=c(2:1))
+plot(df$x[df$Group.1 == FALSE], type='l', main="Weekdays", ylab="Activity", ylim=c(0, 250))
+plot(df$x[df$Group.1 == TRUE], type='l', main="Weekend", ylab="Activity", ylim=c(0, 250))
 ```
+
+![plot of chunk weekends](figure/weekends.png) 
+
+The data show on the weekend the person sleeps longer, and is on the move thoughtout the day. Perhaps the peak during the week at around 10 is lunchtime?
