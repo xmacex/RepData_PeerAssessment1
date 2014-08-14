@@ -45,10 +45,35 @@ plot(sapply(activityPerInterval, avgStepsPerInterval), type='l', main="Activity 
 
 ![plot of chunk avgDailyPattern](figure/avgDailyPattern.png) 
 
+```r
+# plot(by(activity$steps, activity$interval, function(d) {mean(d, na.rm=TRUE)}), type='l', main="Steps per interval", xlab="Intercal number", ylab="Steps per interval")
+```
+
 The most active interval on average is the interval number 104.
 
 ## Imputing missing values
 
+The data has total 2304 NA's. A new data set will now be created. This solution was found online from [StackOverflow](http://stackoverflow.com/questions/9322773/how-to-replace-na-with-mean-by-subset-in-r-impute-with-plyr)
 
+
+```r
+activityNoNas <- activity
+for (i in which(sapply(activityNoNas, is.numeric))) {
+    activityNoNas[is.na(activityNoNas[, i]), i] <- mean(activityNoNas[, i],  na.rm = TRUE)
+}
+
+activityByDateNoNas <- split(activityNoNas, activity$date)
+stepsPerDateNoNas <- sapply(activityByDateNoNas, stepsPerDay)
+hist(stepsPerDateNoNas, main="Histogram of total steps per day (NA's converted)", xlab="Steps per day")
+```
+
+![plot of chunk handleNas](figure/handleNas.png) 
+
+The mean number of steps in the data now, with NA's replaced with means is 1.0766 &times; 10<sup>4</sup> while the median 1.0766 &times; 10<sup>4</sup>.
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
+```r
+isWeekday <- !weekdays(as.Date(activity$date)) %in% c('lauantai', 'sunnuntai')
+```
