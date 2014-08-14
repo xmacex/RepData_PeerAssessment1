@@ -25,11 +25,27 @@ hist(stepsPerDate, main="Histogram of total steps per day", xlab="Steps per day"
 
 ![plot of chunk meanTotalStepsPerDay](figure/meanTotalStepsPerDay.png) 
 
-The mean number of steps in the data is 9354.2295 while the median 10395, with standard deviation of 5405.8951.
+The mean number of steps in the data is 9354.2295 while the median 10395.
 
 ## What is the average daily activity pattern?
 
 
+```r
+stepsPerInterval <- function(interval) {
+  return(sum(interval$steps, na.rm=TRUE))
+}
+
+avgStepsPerInterval <- function(interval) {
+  return(mean(interval$steps, na.rm=TRUE))
+}
+
+activityPerInterval <- split(activity, activity$interval)
+plot(sapply(activityPerInterval, avgStepsPerInterval), type='l', main="Activity per interval", xlab="Interval number", ylab="Steps")
+```
+
+![plot of chunk avgDailyPattern](figure/avgDailyPattern.png) 
+
+The most active interval on average is the interval number 104.
 
 ## Imputing missing values
 

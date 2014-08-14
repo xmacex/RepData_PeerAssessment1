@@ -21,11 +21,24 @@ stepsPerDate <- sapply(activityByDate, stepsPerDay)
 hist(stepsPerDate, main="Histogram of total steps per day", xlab="Steps per day")
 ```
 
-The mean number of steps in the data is `r mean(stepsPerDate)` while the median `r median(stepsPerDate)`, with standard deviation of `r sd(stepsPerDate, na.rm=TRUE)`.
+The mean number of steps in the data is `r mean(stepsPerDate)` while the median `r median(stepsPerDate)`.
 
 ## What is the average daily activity pattern?
 
+```{r avgDailyPattern, fig.height=3}
+stepsPerInterval <- function(interval) {
+  return(sum(interval$steps, na.rm=TRUE))
+}
 
+avgStepsPerInterval <- function(interval) {
+  return(mean(interval$steps, na.rm=TRUE))
+}
+
+activityPerInterval <- split(activity, activity$interval)
+plot(sapply(activityPerInterval, avgStepsPerInterval), type='l', main="Activity per interval", xlab="Interval number", ylab="Steps")
+```
+
+The most active interval on average is the interval number `r which.max(sapply(activityPerInterval, stepsPerInterval))`.
 
 ## Imputing missing values
 
