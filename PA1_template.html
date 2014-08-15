@@ -274,7 +274,7 @@ df &lt;- aggregate(activityNoNas$steps,
                 mean)
 
 # plot it
-par(mfrow=c(2:1))
+par(mfrow=c(2, 1))
 plot(df$x[df$Group.1 == FALSE],
      type=&#39;l&#39;, main=&quot;Weekdays&quot;,
      ylab=&quot;Activity&quot;,
