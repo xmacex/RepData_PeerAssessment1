@@ -292,6 +292,30 @@ plot(df$x[df$Group.1 == TRUE],
 thoughtout the day, more evenly than during the week. Perhaps the peak
 during the week at around 10 is lunchtime?</p>
 
+<h2>A critique</h2>
+
+<p>The coding style here is quite rude, and doesn&#39;t follow any particilar style
+so well&hellip; for instance declarative style or imperative style.</p>
+
+<p>I am not very good with R and it&#39;s some time since i&#39;ve worked with it
+so i&#39;m struggling especially with class types and statistical analysis
+stuff. So the analysis is propably not relevant and coherent from
+statistical analysis point of view.</p>
+
+<p>Anyhow, all the questions have meaningful answers, and this is totally
+reprocable report. That&#39;s the point of this course, I figure.</p>
+
+<p>I tried hard not to manipulate the original data at all, and not to do
+any file operations and that succeeded. However I made some versions of the
+original data, for instance <em>activityByDate</em> and <em>activityPerInterval</em>
+by splitting, and then further the NA-imputed versions of both, and
+finally the separate versions of <em>activityPerInterval</em> for weekdays
+and weekeds. Those two are based on a new column I added to <em>activityNoNas</em>.
+So, my aspirations to not alter the data didn&#39;t succeed perfectly,
+but of course the original data was&#39;t touched at all. If the original
+data would change, this report would still work and is thusly
+reproducable.</p>
+
 </body>
 
 </html>

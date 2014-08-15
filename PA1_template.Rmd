@@ -4,6 +4,7 @@
 
 First, the date is read from a zip file, and then create two versions
 split two ways; by *date* and by *interval*.
+
 ```{r loadData}
 activity <- read.csv2(unz('activity.zip', 'activity.csv'), sep=',')
 activityByDate <- split(activity, activity$date)
@@ -107,3 +108,27 @@ plot(df$x[df$Group.1 == TRUE],
 The data shows on the weekend the person sleeps longer, and is on the move
 thoughtout the day, more evenly than during the week. Perhaps the peak
 during the week at around 10 is lunchtime?
+
+## A critique
+
+The coding style here is quite rude, and doesn't follow any particilar style
+so well... for instance declarative style or imperative style.
+
+I am not very good with R and it's some time since i've worked with it
+so i'm struggling especially with class types and statistical analysis
+stuff. So the analysis is propably not relevant and coherent from
+statistical analysis point of view.
+
+Anyhow, all the questions have meaningful answers, and this is totally
+reprocable report. That's the point of this course, I figure.
+
+I tried hard not to manipulate the original data at all, and not to do
+any file operations and that succeeded. However I made some versions of the
+original data, for instance *activityByDate* and *activityPerInterval*
+by splitting, and then further the NA-imputed versions of both, and
+finally the separate versions of *activityPerInterval* for weekdays
+and weekeds. Those two are based on a new column I added to *activityNoNas*.
+So, my aspirations to not alter the data didn't succeed perfectly,
+but of course the original data was't touched at all. If the original
+data would change, this report would still work and is thusly
+reproducable.
