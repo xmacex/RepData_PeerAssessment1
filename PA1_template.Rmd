@@ -120,7 +120,7 @@ stuff. So the analysis is propably not relevant and coherent from
 statistical analysis point of view.
 
 Anyhow, all the questions have meaningful answers, and this is totally
-reprocable report. That's the point of this course, I figure.
+reproducable report. That's the point of this course, I figure.
 
 I tried hard not to manipulate the original data at all, and not to do
 any file operations and that succeeded. However I made some versions of the
@@ -128,7 +128,8 @@ original data, for instance *activityByDate* and *activityPerInterval*
 by splitting, and then further the NA-imputed versions of both, and
 finally the separate versions of *activityPerInterval* for weekdays
 and weekeds. Those two are based on a new column I added to *activityNoNas*.
-So, my aspirations to not alter the data didn't succeed perfectly,
-but of course the original data was't touched at all. If the original
-data would change, this report would still work and is thusly
-reproducable.
+So, my aspirations to not alter the data didn't succeed perfectly, but of
+course the original data was't touched at all. If the original data would
+change, this report would still work and is thusly reproducable.
+
+![shh i'm doing science](http://scientopia.org/img-archive/scicurious/img_871.jpg)
